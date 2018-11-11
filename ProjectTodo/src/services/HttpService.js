@@ -8,6 +8,12 @@ class HttpService {
   attachHeaders(headers) {
     Object.assign(this.client.defaults.headers, headers);
   }
+
+  removeHeaders(headers) {
+    headers.forEach(header => {
+      delete this.client.defaults.headers[header];
+    });
+  }
 }
 const httpService = new HttpService();
 export default httpService;

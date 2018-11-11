@@ -3,12 +3,16 @@ import { Text, View, Button } from 'react-native';
 import authService from '../services/AuthService';
 
 export default class AuthScreen extends React.Component {
-  async componentDidMount() {
+  componentDidMount() {
+    this.checkIfUserisLogged();
+  }
+
+  checkIfUserisLogged = async () => {
     var user = await authService.getUser();
     if (user) {
       this.props.navigation.navigate('Home', user);
     }
-  }
+  };
 
   render() {
     return (
@@ -18,12 +22,6 @@ export default class AuthScreen extends React.Component {
           title="Login"
           onPress={() => {
             this.props.navigation.navigate('Login');
-          }}
-        />
-        <Button
-          title="Registration"
-          onPress={() => {
-            this.props.navigation.navigate('Registration');
           }}
         />
       </View>

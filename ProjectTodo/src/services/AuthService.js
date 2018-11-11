@@ -20,9 +20,10 @@ class AuthService extends BaseService {
       await AsyncStorage.setItem('user', JSON.stringify(user));
 
       await this.setAuthorizationHeader();
-    } catch (error) {}
+    } catch (error) {
+      alert('Error occured...');
+    }
   };
-
   getUser = async () => {
     return await AsyncStorage.getItem('user');
   };
@@ -44,7 +45,7 @@ class AuthService extends BaseService {
       var user = this.getUserFromToken(token);
       this.apiClient().defaults.headers.common['Authorization'] =
         'Bearer' + token;
-      await AsyncStorage.setItem('user', JSON.stringify(user)); //
+      await AsyncStorage.setItem('user', JSON.stringify(user));
       await AsyncStorage.setItem('token', token);
       return user;
     } catch {

@@ -7,7 +7,6 @@ const ENDPOINTS = {
 class CardsService extends BaseService {
   getCards = async token => {
     var response = await this.apiClient().get(ENDPOINTS.GET_CARDS);
-
     return response;
   };
 }

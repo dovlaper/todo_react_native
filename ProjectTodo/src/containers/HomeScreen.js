@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, Button, FlatList, StyleSheet } from 'react-native';
-import { AsyncStorage } from 'react-native';
 import authService from '../services/AuthService';
 import cardService from '../services/CardsService';
 
@@ -21,21 +20,22 @@ const styles = StyleSheet.create({
 });
 
 export default class HomeScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this;
+  componentDidMount() {
+    this.getCards();
   }
 
-  async componentDidMount() {
+  getCards = async () => {
     const token = await this.checkAuthorization();
     if (token) {
-      authService.setAuthorizationHeader();
-      var cards = await cardService.getCards();
-      this.setState({ cards: cards.data });
+      authService.apiClient().defaults.headers.common['Authorization'] =
+        'Bearer' + token;
+      this.setState({ loader: false });
+      var cards = await cardService.getCards(token);
+      this.setState({ cards: cards.data, loader: true });
     } else {
       this.props.navigation.navigate('Auth');
     }
-  }
+  };
 
   state = {
     name: '',
@@ -57,8 +57,10 @@ export default class HomeScreen extends React.Component {
   };
 
   logout = () => {
+    const { goBack } = this.props.navigation;
     authService.logout();
     this.props.navigation.pop();
+    this.props.navigation.navigate('Auth');
   };
 
   render() {
