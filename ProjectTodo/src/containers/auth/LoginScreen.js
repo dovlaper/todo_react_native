@@ -5,17 +5,10 @@ import authService from '../../services/AuthService';
 export default class LoginScreen extends React.Component {
   state = { email: '', password: '' };
 
-  constructor(props) {
-    super(props);
-  }
-
   handleSubmit = async () => {
-    const { navigate } = this.props.navigation;
     var user = await authService.login(this.state);
     if (user) {
-      navigate('Home', { loggedUser: user });
-    } else {
-      alert('Login failed');
+      this.props.navigation.navigate('Home', { user: user });
     }
   };
 
