@@ -6,9 +6,13 @@ const ENDPOINTS = {
 };
 
 class AuthService extends BaseService {
-  constructor(props) {
-    super(props);
-  }
+  getUser = async () => {
+    return await AsyncStorage.getItem('user');
+  };
+
+  getToken = async () => {
+    return await AsyncStorage.getItem('token');
+  };
 
   getUserFromToken(token) {
     var base64Url = token.split('.')[1];
@@ -30,6 +34,11 @@ class AuthService extends BaseService {
       return;
     }
   };
+
+  logout() {
+    AsyncStorage.removeItem('user');
+    AsyncStorage.removeItem('token');
+  }
 }
 
 const authService = new AuthService();
