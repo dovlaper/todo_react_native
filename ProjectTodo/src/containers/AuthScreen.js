@@ -24,6 +24,12 @@ export default class AuthScreen extends React.Component {
             this.props.navigation.navigate('Login');
           }}
         />
+        <Button
+          title="Signup"
+          onPress={() => {
+            this.props.navigation.navigate('Register');
+          }}
+        />
       </View>
     );
   }
