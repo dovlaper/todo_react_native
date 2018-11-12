@@ -6,6 +6,11 @@ const ENDPOINTS = {
 };
 
 class AuthService extends BaseService {
+  constructor() {
+    super();
+    this.setAuthorizationHeader();
+  }
+
   setAuthorizationHeader = async () => {
     const token = await this.getToken();
     if (token) {
@@ -36,7 +41,7 @@ class AuthService extends BaseService {
       var user = this.getUserFromToken(token);
       await AsyncStorage.setItem('user', JSON.stringify(user));
       await AsyncStorage.setItem('token', token);
-      this.setAuthorizationHeader();
+      await this.setAuthorizationHeader();
       return user;
     } catch {
       return;

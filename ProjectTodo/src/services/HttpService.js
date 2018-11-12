@@ -11,7 +11,7 @@ class HttpService {
 
   removeHeaders(headers) {
     headers.forEach(header => {
-      delete this.client.defaults.headers[header];
+      delete this.client.defaults.headers.common[header];
     });
   }
 }

@@ -28,6 +28,6 @@ const RootStack = createStackNavigator(
 
 export default class App extends React.Component {
   render() {
-    return authService.setAuthorizationHeader() && <RootStack />;
+    return <RootStack />;
   }
 }
