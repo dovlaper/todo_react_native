@@ -50,7 +50,6 @@ export default class HomeScreen extends React.Component {
   };
 
   logout = () => {
-    const { goBack } = this.props.navigation;
     authService.logout();
     this.props.navigation.pop();
     this.props.navigation.navigate('Auth');

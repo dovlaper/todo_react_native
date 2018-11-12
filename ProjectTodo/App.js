@@ -4,7 +4,6 @@ import LoginScreen from './src/containers/auth/LoginScreen';
 import AuthScreen from './src/containers/AuthScreen';
 import HomeScreen from './src/containers/HomeScreen';
 import StartScreen from './src/containers/StartScreen';
-import authService from './src/services/AuthService';
 
 const RootStack = createStackNavigator(
   {
