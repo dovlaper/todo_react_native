@@ -6,7 +6,10 @@ export default class LoginScreen extends React.Component {
   state = { email: '', password: '' };
 
   handleSubmit = async () => {
-    var user = await authService.login(this.state);
+    var user = await authService.login({
+      email: this.state.email,
+      password: this.state.password
+    });
     if (user) {
       this.props.navigation.navigate('Home', { user: user });
     }

@@ -5,9 +5,9 @@ class BaseService {
     this.api = httpService;
   }
 
-  apiClient() {
+  apiClient = () => {
     return this.api.client;
-  }
+  };
 }
 
 export default BaseService;

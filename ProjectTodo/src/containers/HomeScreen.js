@@ -25,16 +25,9 @@ export default class HomeScreen extends React.Component {
   }
 
   getCards = async () => {
-    const token = await this.checkAuthorization();
-    if (token) {
-      authService.apiClient().defaults.headers.common['Authorization'] =
-        'Bearer' + token;
-      this.setState({ loader: false });
-      var cards = await cardService.getCards(token);
-      this.setState({ cards: cards.data, loader: true });
-    } else {
-      this.props.navigation.navigate('Auth');
-    }
+    this.setState({ loader: false });
+    var cards = await cardService.getCards();
+    this.setState({ cards: cards.data, loader: true });
   };
 
   state = {

@@ -15,15 +15,6 @@ class AuthService extends BaseService {
     }
   };
 
-  createSession = async user => {
-    try {
-      await AsyncStorage.setItem('user', JSON.stringify(user));
-
-      await this.setAuthorizationHeader();
-    } catch (error) {
-      alert('Error occured...');
-    }
-  };
   getUser = async () => {
     return await AsyncStorage.getItem('user');
   };
@@ -43,10 +34,9 @@ class AuthService extends BaseService {
       let response = await this.apiClient().post(ENDPOINTS.LOGIN, data);
       var token = response['data']['access_token'];
       var user = this.getUserFromToken(token);
-      this.apiClient().defaults.headers.common['Authorization'] =
-        'Bearer' + token;
       await AsyncStorage.setItem('user', JSON.stringify(user));
       await AsyncStorage.setItem('token', token);
+      this.setAuthorizationHeader();
       return user;
     } catch {
       return;
@@ -54,8 +44,8 @@ class AuthService extends BaseService {
   };
 
   logout() {
-    AsyncStorage.removeItem('user');
-    AsyncStorage.removeItem('token');
+    AsyncStorage.clear();
+    this.api.removeHeaders(['Authorization']);
   }
 }
 

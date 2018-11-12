@@ -5,9 +5,9 @@ class HttpService {
     this.client = axios.create({ baseURL: 'http://todo.test/api/' });
   }
 
-  attachHeaders(headers) {
-    Object.assign(this.client.defaults.headers, headers);
-  }
+  attachHeaders = headers => {
+    Object.assign(this.client.defaults.headers.common, headers);
+  };
 
   removeHeaders(headers) {
     headers.forEach(header => {
