@@ -5,7 +5,7 @@ import authService from '../../services/AuthService';
 export default class RegistrationScreen extends React.Component {
   state = { email: '', password: '', name: '' };
 
-  handleSubmit = async data => {
+  handleSubmit = async () => {
     try {
       const response = await authService.register(this.state);
       alert('Registration successfull');
@@ -61,11 +61,7 @@ export default class RegistrationScreen extends React.Component {
             secureTextEntry
             onChangeText={this.handlePasswordInputChange}
           />
-          <Button
-            title="SignUp"
-            onPress={this.handleSubmit}
-            data={this.state}
-          />
+          <Button title="SignUp" onPress={this.handleSubmit} />
           <Button onPress={() => goBack()} title="Back" />
         </View>
       </View>
