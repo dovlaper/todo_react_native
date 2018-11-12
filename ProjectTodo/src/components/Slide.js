@@ -1,23 +1,29 @@
 import React from 'react';
 import { Text, View, FlatList } from 'react-native';
+import Card from './Card';
 
-export default class Slide extends React.Component {
+export default class Slide extends React.PureComponent {
+  _keyExtractor = item => item.id.toString();
+
+  _renderItem = ({ item, index }) => (
+    <Card
+      data={item}
+      navigate={this.props.navigate}
+      style={this.props.style}
+      key={index}
+    />
+  );
+
   render() {
     return (
-      <View style={this.props.style.slide1}>
+      <View style={this.props.style}>
         <Text>{this.props.title2}</Text>
+
         <FlatList
-          extraData={this.props.loader}
           data={this.props.data}
-          renderItem={({ item }) => (
-            <View style={this.props.style.item}>
-              <Text style={this.props.style.itemtitle}>{item.title}</Text>
-              <Text style={this.props.style.itemcontent}>{item.content}</Text>
-              <Text style={this.props.style.itempriority}>
-                {item.priority == 1 ? 'hot' : ''}
-              </Text>
-            </View>
-          )}
+          extraData={this.state}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
         />
       </View>
     );
