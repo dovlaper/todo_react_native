@@ -3,10 +3,6 @@ import { Text, View, TextInput, Button } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
 export default class CardScreen extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     title: this.props.navigation.getParam('data').title,
     content: this.props.navigation.getParam('data').content,
