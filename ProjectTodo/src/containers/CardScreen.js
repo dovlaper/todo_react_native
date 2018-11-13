@@ -1,19 +1,8 @@
 import React from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput, Button } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import cardService from '../services/CardsService';
-
-import MyButton from '../components/MyButton';
 
 export default class CardScreen extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    console.log(JSON.stringify(this.props.navigation.getParam('data')));
-  }
-
   state = {
     title: this.props.navigation.getParam('data').title,
     content: this.props.navigation.getParam('data').content,
@@ -21,9 +10,8 @@ export default class CardScreen extends React.Component {
     priority: this.props.navigation.getParam('data').priority
   };
 
-  editCard = () => {
-    auth;
-  };
+  editCard = () => {};
+
 
   deleteCard = () => {};
 
@@ -52,7 +40,9 @@ export default class CardScreen extends React.Component {
           checked={this.state.done}
           onPress={() => this.setState({ done: !this.state.done })}
         />
-        <MyButton title2="Edit" onPress={this.editCard} />
+        <Button title="Edit" onPress={this.editCard} />
+        <Button title="Delete" onPress={this.deleteCard} />
+
       </View>
     );
   }

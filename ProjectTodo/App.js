@@ -23,6 +23,10 @@ const RootStack = createStackNavigator(
     },
     Start: {
       screen: StartScreen
+    },
+    CardInfo: {
+      screen: CardScreen
+
     }
   },
   {
