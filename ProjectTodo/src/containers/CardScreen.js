@@ -10,10 +10,6 @@ export default class CardScreen extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log(JSON.stringify(this.props.navigation.getParam('data')));
-  }
-
   state = {
     title: this.props.navigation.getParam('data').title,
     content: this.props.navigation.getParam('data').content,
