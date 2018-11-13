@@ -2,20 +2,28 @@ import React from 'react';
 import { Text, View, Button, FlatList, StyleSheet } from 'react-native';
 import authService from '../services/AuthService';
 import cardService from '../services/CardsService';
+import Swiper from 'react-native-swiper';
+import Slide from '../components/Slide';
 
 const styles = StyleSheet.create({
-  item: {
-    borderColor: 'black',
-    borderTopWidth: 1
+  wrapper: {},
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ff7c51'
   },
-  itemtitle: {
-    fontWeight: 'bold',
-    fontSize: 17,
-    color: 'grey'
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightgreen'
   },
-  itemcontent: {
-    fontSize: 14,
-    color: 'black'
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#a3fbff'
   }
 });
 
@@ -27,10 +35,18 @@ export default class HomeScreen extends React.Component {
   getCards = async () => {
     this.setState({ loader: false });
     var cards = await cardService.getCards();
-    this.setState({ cards: cards.data, loader: true });
+    this.setState({ cards: cards.data });
+    this.setState({ loader: true });
+  };
+
+  sortedCards = done => {
+    return this.state.cards
+      .filter(card => card.done === done)
+      .sort((a, b) => (a.priority && !b.priority ? -1 : 1));
   };
 
   state = {
+    loader: false,
     name: '',
     email: '',
     cards: []
@@ -56,31 +72,31 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
-    cardArray = [];
-    for (var index in this.state.cards) {
-      cardArray.push({
-        key: this.state.cards[index].id + '',
-        content: this.state.cards[index].content,
-        title: this.state.cards[index].title
-      });
-    }
-    return (
-      <View>
-        <Text>ToDo</Text>
-        <FlatList
-          extraData={this.state.loader}
-          data={cardArray}
-          renderItem={({ item }) => (
-            <View style={styles.item}>
-              <Text style={styles.itemtitle}>{item.title}</Text>
-              <Text style={styles.itemcontent}>{item.content}</Text>
-            </View>
-          )}
+    return this.state.loader ? (
+      <Swiper style={styles.wrapper} showsButtons={true} index={1}>
+        <Slide
+          style={styles.slide1}
+          data={this.sortedCards(false)}
+          title2="Todo"
+          loader={this.state.loader}
+          navigate={this.props.navigation.navigate}
         />
-        <Button onPress={this.logout} title="Logout" />
-        <Text>{this.state.name}</Text>
-        <Text>{this.state.email}</Text>
-      </View>
+        <Slide
+          style={styles.slide2}
+          data={this.sortedCards(true)}
+          title2="Done"
+          loader={this.state.loader}
+          navigate={this.props.navigation.navigate}
+        />
+        <View style={styles.slide3}>
+          <Text>Enjoy your Vladnotes :</Text>
+          <Text>{this.state.name}</Text>
+          <Text>{this.state.email}</Text>
+          <Button onPress={this.logout} title="Logout" />
+        </View>
+      </Swiper>
+    ) : (
+      <Text>Loading...</Text>
     );
   }
 }

@@ -5,6 +5,7 @@ import RegistrationScreen from './src/containers/auth/RegistrationScreen';
 import AuthScreen from './src/containers/AuthScreen';
 import HomeScreen from './src/containers/HomeScreen';
 import StartScreen from './src/containers/StartScreen';
+import CardScreen from './src/containers/CardScreen';
 
 const RootStack = createStackNavigator(
   {
