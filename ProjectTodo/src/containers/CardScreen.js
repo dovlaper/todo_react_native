@@ -12,6 +12,7 @@ export default class CardScreen extends React.Component {
 
   editCard = () => {};
 
+
   deleteCard = () => {};
 
   render() {
@@ -41,6 +42,7 @@ export default class CardScreen extends React.Component {
         />
         <Button title="Edit" onPress={this.editCard} />
         <Button title="Delete" onPress={this.deleteCard} />
+
       </View>
     );
   }
