@@ -42,6 +42,7 @@ export default class CardScreen extends React.Component {
     console.log('usao u edit card');
   };
 
+
   deleteCard = () => {};
 
   render() {
@@ -69,7 +70,6 @@ export default class CardScreen extends React.Component {
           checked={this.state.done}
           onPress={() => this.setState({ done: !this.state.done })}
         />
-
         {this.state.editForm ? (
           <Button title="Edit" onPress={this.editCard} />
         ) : (
@@ -78,6 +78,7 @@ export default class CardScreen extends React.Component {
         {this.state.editForm ? (
           <Button title="Delete" onPress={this.deleteCard} />
         ) : null}
+
       </View>
     );
   }
