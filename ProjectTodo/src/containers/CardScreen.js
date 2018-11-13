@@ -17,9 +17,7 @@ export default class CardScreen extends React.Component {
     priority: this.props.navigation.getParam('data').priority
   };
 
-  editCard = () => {
-    auth;
-  };
+  editCard = () => {};
 
   deleteCard = () => {};
 
@@ -49,6 +47,7 @@ export default class CardScreen extends React.Component {
           onPress={() => this.setState({ done: !this.state.done })}
         />
         <MyButton title2="Edit" onPress={this.editCard} />
+        <MyButton title2="Delete" onPress={this.deleteCard} />
       </View>
     );
   }
