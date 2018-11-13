@@ -5,7 +5,6 @@ import cardsService from '../services/CardsService';
 
 export default class CardScreen extends React.Component {
   componentDidMount() {
-    console.log(this.props.navigation.getParam('dataInfo'));
     if (this.props.navigation.getParam('dataInfo') !== undefined)
       this.setState({
         id: this.props.navigation.getParam('dataInfo').id,
@@ -25,7 +24,6 @@ export default class CardScreen extends React.Component {
   };
 
   newCard = async () => {
-    console.log('usao u new card');
     response = await cardsService.addNewCard({
       title: this.state.title,
       content: this.state.content,
@@ -38,10 +36,7 @@ export default class CardScreen extends React.Component {
     this.props.navigation.navigate('Home');
   };
 
-  editCard = async () => {
-    console.log('usao u edit card');
-  };
-
+  editCard = async () => {};
 
   deleteCard = () => {};
 
@@ -70,6 +65,7 @@ export default class CardScreen extends React.Component {
           checked={this.state.done}
           onPress={() => this.setState({ done: !this.state.done })}
         />
+
         {this.state.editForm ? (
           <Button title="Edit" onPress={this.editCard} />
         ) : (
@@ -78,7 +74,6 @@ export default class CardScreen extends React.Component {
         {this.state.editForm ? (
           <Button title="Delete" onPress={this.deleteCard} />
         ) : null}
-
       </View>
     );
   }
