@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 
 const Card = ({ data, navigate }) => {
   return (
-    <TouchableOpacity onPress={() => navigate('CardS')}>
+    <TouchableOpacity onPress={() => navigate('CardS', { data })}>
       <View style={styles.item}>
         <Text style={{ color: 'darkblue', fontWeight: 'bold' }}>
           {data.title}
