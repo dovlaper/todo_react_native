@@ -4,7 +4,6 @@ import { CheckBox } from 'react-native-elements';
 
 export default class CardForm extends React.PureComponent {
   componentWillMount() {
-    console.log('dsdadsadas', this.props.dataInfo);
     this.props.dataInfo
       ? this.setState({
           content: this.props.dataInfo.content,
