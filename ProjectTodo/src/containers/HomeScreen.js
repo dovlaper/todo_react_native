@@ -92,6 +92,10 @@ export default class HomeScreen extends React.Component {
           <Text>Enjoy your Vladnotes :</Text>
           <Text>{this.state.name}</Text>
           <Text>{this.state.email}</Text>
+          <Button
+            onPress={() => this.props.navigation.navigate('CardInfo')}
+            title="Add New Item"
+          />
           <Button onPress={this.logout} title="Logout" />
         </View>
       </Swiper>
