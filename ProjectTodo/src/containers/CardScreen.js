@@ -37,9 +37,25 @@ export default class CardScreen extends React.Component {
     this.props.navigation.navigate('Home');
   };
 
-  editCard = async () => {};
+  editCard = async () => {
+    response = await cardsService.editCard(this.state.id, {
+      title: this.state.title,
+      content: this.state.content,
+      done: this.state.done,
+      priority: this.state.priority
+    });
+    this.props.navigation.pop();
+    this.props.navigation.pop();
 
-  deleteCard = () => {};
+    this.props.navigation.navigate('Home');
+  };
+
+  deleteCard = async () => {
+    await cardsService.deleteCard(this.state.id);
+    this.props.navigation.pop();
+    this.props.navigation.pop();
+    this.props.navigation.navigate('Home');
+  };
 
   render() {
     return (

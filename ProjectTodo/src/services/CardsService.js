@@ -12,6 +12,14 @@ class CardsService extends BaseService {
   addNewCard = data => {
     return this.apiClient().post(ENDPOINTS.CARDS, data);
   };
+
+  editCard = (id, data) => {
+    return this.apiClient().put(ENDPOINTS.CARDS + id, data);
+  };
+
+  deleteCard = id => {
+    return this.apiClient().delete(ENDPOINTS.CARDS + id);
+  };
 }
 
 const cardsService = new CardsService();
