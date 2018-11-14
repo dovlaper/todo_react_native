@@ -1,17 +1,16 @@
 import BaseService from './BaseService';
 
 const ENDPOINTS = {
-  GET_CARDS: '/cards',
-  CREATE_CARD: '/cards/'
+  CARDS: '/cards/'
 };
 
 class CardsService extends BaseService {
   getCards = () => {
-    return this.apiClient().get(ENDPOINTS.GET_CARDS);
+    return this.apiClient().get(ENDPOINTS.CARDS);
   };
 
   addNewCard = data => {
-    return this.apiClient().post(ENDPOINTS.CREATE_CARD, data);
+    return this.apiClient().post(ENDPOINTS.CARDS, data);
   };
 }
 

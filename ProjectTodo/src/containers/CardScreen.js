@@ -5,7 +5,7 @@ import cardsService from '../services/CardsService';
 
 export default class CardScreen extends React.Component {
   componentDidMount() {
-    if (this.props.navigation.getParam('dataInfo') !== undefined)
+    if (this.props.navigation.getParam('dataInfo'))
       this.setState({
         id: this.props.navigation.getParam('dataInfo').id,
         title: this.props.navigation.getParam('dataInfo').title,
