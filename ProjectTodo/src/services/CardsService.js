@@ -11,7 +11,7 @@ class CardsService extends BaseService {
   };
 
   addNewCard = data => {
-    this.apiClient().post(ENDPOINTS.CREATE_CARD, data);
+    return this.apiClient().post(ENDPOINTS.CREATE_CARD, data);
   };
 }
 
