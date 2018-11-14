@@ -6,14 +6,12 @@ const ENDPOINTS = {
 };
 
 class CardsService extends BaseService {
-  getCards = async () => {
-    var response = await this.apiClient().get(ENDPOINTS.GET_CARDS);
-    return response;
+  getCards = () => {
+    return this.apiClient().get(ENDPOINTS.GET_CARDS);
   };
 
-  addNewCard = async data => {
-    var response = await this.apiClient().post(ENDPOINTS.CREATE_CARD, data);
-    return response;
+  addNewCard = data => {
+    this.apiClient().post(ENDPOINTS.CREATE_CARD, data);
   };
 }
 

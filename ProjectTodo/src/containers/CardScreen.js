@@ -20,7 +20,8 @@ export default class CardScreen extends React.Component {
     title: '',
     content: '',
     done: false,
-    priority: false
+    priority: false,
+    editForm: false
   };
 
   newCard = async () => {
@@ -71,9 +72,9 @@ export default class CardScreen extends React.Component {
         ) : (
           <Button title="Create" onPress={this.newCard} />
         )}
-        {this.state.editForm ? (
+        {this.state.editForm && (
           <Button title="Delete" onPress={this.deleteCard} />
-        ) : null}
+        )}
       </View>
     );
   }
